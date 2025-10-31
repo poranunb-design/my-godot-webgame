@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://biyxkr4c1qbh5"]
+
+[ext_resource type="PackedScene" uid="uid://u1thvkiged4l" path="res://art/Wizard.glb" id="1_kfxpj"]
+[ext_resource type="PackedScene" uid="uid://dak8jk74ekke" path="res://GreenSpikyBlob.fbx" id="2_tb5ic"]
+
+[node name="Root Scene" instance=ExtResource("1_kfxpj")]
+
+[node name="GreenSpikyBlob" parent="RootNode" index="0" instance=ExtResource("2_tb5ic")]
+
+[node name="CharacterArmature" parent="RootNode" index="1"]
+visible = false
+
+[node name="Skeleton3D" parent="RootNode/CharacterArmature" index="0"]
+visible = false
+
+[node name="Wizard_Blob_001" parent="RootNode/CharacterArmature/Skeleton3D" index="0"]
+visible = false
+
+[node name="Wizard_Blob" parent="RootNode/CharacterArmature/Skeleton3D" index="1"]
+visible = false

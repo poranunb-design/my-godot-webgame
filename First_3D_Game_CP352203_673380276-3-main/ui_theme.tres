@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b3f8t8w8fu28r"]
+
+[ext_resource type="FontFile" uid="uid://bgeguutgbntyu" path="res://font/Arundinamobd.ttf" id="1_touxu"]
+
+[resource]
+default_font = ExtResource("1_touxu")
+default_font_size = 35

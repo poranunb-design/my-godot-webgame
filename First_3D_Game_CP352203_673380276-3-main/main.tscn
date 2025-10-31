@@ -1,0 +1,174 @@
+[gd_scene load_steps=14 format=3 uid="uid://3oksc3v5bpd0"]
+
+[ext_resource type="Script" uid="uid://cu4b6qso3rqbt" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cjh3c1brty3l7" path="res://Player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://3bolp2oglpo8" path="res://mob.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://bjlbllxmpe6de" path="res://art/soil-5342049_1280.png" id="3_kek77"]
+[ext_resource type="Theme" uid="uid://b3f8t8w8fu28r" path="res://ui_theme.tres" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://hphpkr62h47o" path="res://score_label.gd" id="5_lquwl"]
+[ext_resource type="Environment" uid="uid://dw7t552ioiwwy" path="res://default_env.tres" id="7_5vw27"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+albedo_texture = ExtResource("3_kek77")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ig7tw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_color = Color(0.83772, 0.143603, 0.590206, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_h2yge"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -14.8857, 0, -15.6466, 0, 0, 0, 0, 0, 0, 15.6927, 0, -15.8184, 0, 0, 0, 0, 0, 0, 15.7786, 0, 16.6497, 0, 0, 0, 0, 0, 0, -15.2293, 0, 16.4779),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0xm2m")
+mob_scene = ExtResource("2_h2yge")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.04862, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_7dm0k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_ig7tw")
+surface_material_override/0 = SubResource("StandardMaterial3D_5vw27")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Ground/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 5, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.682611, 0.730782, 0, -0.730782, 0.682611, 2.38419e-06, -5.97794, -0.0997953)
+light_energy = 1.5
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.131652, 0)
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7773, 0.62913, 0, -0.62913, 0.7773, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0.0101676, -0.00718498, 19.0044)
+projection = 1
+current = true
+fov = 70.0
+size = 19.0
+far = 100.0
+
+[node name="Cylinders" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0758, -0.577436, -15.6305)
+mesh = SubResource("CylinderMesh_ig7tw")
+surface_material_override/0 = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5403, -0.577436, -15.6305)
+mesh = SubResource("CylinderMesh_ig7tw")
+surface_material_override/0 = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0758, -0.577436, 16.6525)
+mesh = SubResource("CylinderMesh_ig7tw")
+surface_material_override/0 = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5403, -0.577436, 16.6525)
+mesh = SubResource("CylinderMesh_ig7tw")
+surface_material_override/0 = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="SpawnPath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_h2yge")
+
+[node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath"]
+transform = Transform3D(0.00561819, 0, -0.999971, 0, 1, 0, 0.999971, 0, 0.00561819, 1.02556, 0, -15.736)
+progress = 15.9115
+rotation_mode = 2
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.7
+autostart = true
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_1bvp3")
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+layout_mode = 1
+offset_left = 27.0
+offset_top = 24.0
+offset_right = 113.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+text = "Score : 0"
+script = ExtResource("5_lquwl")
+
+[node name="name" type="Label" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -258.0
+offset_top = 20.0
+offset_right = -9.0
+offset_bottom = 107.0
+grow_horizontal = 0
+scale = Vector2(0.928235, 0.928235)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+text = "นางสาวปรนันท์ บุสดีวงค์
+673380276-3"
+horizontal_alignment = 2
+script = ExtResource("5_lquwl")
+
+[node name="Retry" type="ColorRect" parent="UserInterface"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0196078, 0.0196078, 0.0196078, 0.568627)
+
+[node name="Label" type="Label" parent="UserInterface/Retry"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play again
+"
+horizontal_alignment = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("7_5vw27")
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

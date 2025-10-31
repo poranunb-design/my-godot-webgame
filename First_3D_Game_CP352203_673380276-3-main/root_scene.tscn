@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cre8t2k2ym4cx"]
+
+[ext_resource type="PackedScene" uid="uid://bjqhpo4fhb83a" path="res://art/Pink Slime.glb" id="1_itajj"]
+[ext_resource type="PackedScene" uid="uid://crhoe0nxtha2p" path="res://Alien.fbx" id="2_c77vg"]
+
+[node name="Root Scene" instance=ExtResource("1_itajj")]
+
+[node name="Alien" parent="RootNode" index="0" instance=ExtResource("2_c77vg")]
+
+[node name="CharacterArmature" parent="RootNode" index="1"]
+visible = false
+
+[node name="Skeleton3D" parent="RootNode/CharacterArmature" index="0"]
+visible = false
+bones/2/position = Vector3(0, 0, 0.00483194)
+bones/4/rotation = Quaternion(6.93889e-18, 3.54715e-10, -0.00264005, 0.999997)
+
+[node name="Pink_Blob_001" parent="RootNode/CharacterArmature/Skeleton3D" index="0"]
+visible = false
+
+[node name="Pink_Blob" parent="RootNode/CharacterArmature/Skeleton3D" index="1"]
+visible = false
